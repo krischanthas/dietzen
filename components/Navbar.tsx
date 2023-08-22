@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
     </div>
   );
 
-  let right = null;
+  let right;
 
   if (status === "loading") {
     left = (
@@ -63,28 +63,28 @@ const Navbar: React.FC = () => {
   //  if user is logged in
   if (session) {
     left = (
-      <div>
-        <p>Welcome {session.user.name}!</p>
+      <div className="w-100 py-4 flex justify-center">
+        <p>Welcome {session.user?.name}</p>
       </div>
     );
 
     right = (
-      <div>
+      <div className="flex flex-row text-center">
         <Link legacyBehavior href="/">
-          <a className="bold" data-active={isActive("/")}>
+          <a className="basis-1/4" data-active={isActive("/")}>
             Home
           </a>
         </Link>
         <Link
           href="/createMeal"
-          style={{ textDecoration: "none", color: "#000" }}
-        >
+          className="basis-1/4"       
+         >
           New Meal
         </Link>
-        <Link href="/search" style={{ textDecoration: "none", color: "#000" }}>
+        <Link href="/search" className="basis-1/4">
           Search Food
         </Link>
-        <Link href="/" onClick={() => signOut()}>
+        <Link href="/" className="basis-1/4" onClick={() => signOut()}>
           Log Out
         </Link>
       </div>
