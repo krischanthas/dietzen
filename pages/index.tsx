@@ -7,14 +7,7 @@ import Layout from "../components/Layout";
 import Meal, { MealProps } from "../components/Meal";
 import prisma from "../lib/prisma";
 import { useRouter } from "next/router";
-import { createStyles } from "@mantine/core";
 
-const useStyles = createStyles((theme) => ({
-  dateForm: {
-    display: "flex",
-    justifyContent: "end",
-  },
-}));
 
 const startOfDay: Date = new Date();
 startOfDay.setHours(0);
@@ -81,7 +74,6 @@ type Props = {
 };
 
 const Meals: React.FC<Props> = (props) => {
-  const { classes } = useStyles();
 
   const { data: session } = useSession();
   // var tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -107,7 +99,7 @@ const Meals: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
-        <div className={classes.dateForm}>
+        <div>
           <form onSubmit={onSearch}>
             <input
               type="date"
