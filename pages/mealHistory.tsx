@@ -3,15 +3,8 @@ import { useSearchParams } from "next/navigation";
 import useSwr from "swr";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-import { createStyles } from "@mantine/core";
 
-const useStyles = createStyles((theme) => ({
-  dateForm: {
-    display: "flex",
-    justifyContent: "end",
-    alignItems: "center",
-  },
-}));
+
 const fetchMealHistory = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) throw new Error("failed to fetch meal history");
@@ -19,7 +12,6 @@ const fetchMealHistory = async (url: string) => {
 };
 
 const mealHistory = () => {
-  const { classes } = useStyles();
 
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
@@ -39,7 +31,7 @@ const mealHistory = () => {
   if (data !== undefined) {
     return (
       <Layout>
-        <div className={classes.dateForm}>
+        <div >
           <form onSubmit={onSearch}>
             <input
               type="date"
