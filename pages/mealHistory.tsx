@@ -4,7 +4,6 @@ import useSwr from "swr";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 
-
 const fetchMealHistory = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) throw new Error("failed to fetch meal history");
@@ -12,7 +11,6 @@ const fetchMealHistory = async (url: string) => {
 };
 
 const mealHistory = () => {
-
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
   const encodedSearchQuery = encodeURI(searchQuery || "");
@@ -25,18 +23,19 @@ const mealHistory = () => {
 
   const onSearch = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    // const encodedSearchDate = encodeURI(searchDate);
     Router.push(`/mealHistory?q=${searchDate}`);
   };
   if (data !== undefined) {
     return (
       <Layout>
-        <div >
+        <div>
           <form onSubmit={onSearch}>
             <input
               type="date"
               name="date"
-              value={new Date(searchDate).toISOString().substring(0, 10)}
+              value={new Date(encodedSearchQuery)
+                .toISOString()
+                .substring(0, 10)}
               onChange={(event) => setSearchDate(event.target.value)}
             />
             <button type="submit">Search</button>

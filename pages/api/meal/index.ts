@@ -18,7 +18,7 @@ export default async function handle(req, res) {
       carbohydrates: nutrition.carbohydrates,
       protein: nutrition.protein,
       unit: nutrition.unit,
-      author: { connect: { email: session?.user?.email } },
+      author: { connect: { email: session?.user?.email as string } },
     },
   });
   res.json(result);

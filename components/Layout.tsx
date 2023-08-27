@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = (props) => (
-  <div className="bg-paleorange h-full md:h-screen">
+  <div className="bg-paleorange min-h-screen">
     {/* <Navbar /> */}
     <Nav />
     <div>{props.children}</div>

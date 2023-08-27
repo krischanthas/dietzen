@@ -4,7 +4,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { useSession, getSession } from "next-auth/react";
 import Layout from "../components/Layout";
-import Meal, { MealProps } from "../components/Meal";
+import { MealProps } from "../components/Meal";
 import prisma from "../lib/prisma";
 import DailySummary from "../components/DailySummary";
 import DailyMealsList from "../components/DailyMealsList";
@@ -12,16 +12,13 @@ import DateForm from "../components/DateForm";
 import Login from "../components/Login";
 
 const startOfDay: Date = new Date();
-startOfDay.setHours(0);
+startOfDay.setHours(-7);
 startOfDay.setMinutes(0);
 startOfDay.setSeconds(0);
-startOfDay.setMilliseconds(0);
-
 const endOfDay: Date = new Date();
 endOfDay.setHours(23);
 endOfDay.setMinutes(59);
 endOfDay.setSeconds(59);
-endOfDay.setMilliseconds(59);
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
@@ -33,8 +30,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const meals = await prisma.meal.findMany({
     where: {
       createdAt: {
-        lte: endOfDay,
         gte: startOfDay,
+        // lte: endOfDay,
       },
       author: { email: session.user?.email },
     },

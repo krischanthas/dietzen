@@ -33,7 +33,7 @@ export default async function handler(
         lte: endOfDay,
         gte: startOfDay,
       },
-      author: { email: session.user.email },
+      author: { email: session.user?.email },
     },
     include: {
       author: {
