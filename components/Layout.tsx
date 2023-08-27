@@ -1,13 +1,15 @@
 import React, { ReactNode } from "react";
-import Navbar from "./Navbar";
+import Nav from "./Nav";
+// import Navbar from "./Navbar";
 
 type Props = {
   children: ReactNode;
 };
 
 const Layout: React.FC<Props> = (props) => (
-  <div>
-    <Navbar />
+  <div className="bg-paleorange h-full md:h-screen">
+    {/* <Navbar /> */}
+    <Nav />
     <div>{props.children}</div>
   </div>
 );

@@ -44,20 +44,18 @@ const SearchItem: React.FC<{ item: SearchProps }> = ({ item }) => {
   };
 
   return (
-    <div>
-      <h2>{item.food_name}</h2>
-      <small>By {item.brand_name}</small>
-      <ReactMarkdown children={markdown} />
-      <button onClick={() => submitData(item)}>Add Meal</button>
-      <style jsx>{`
-        div {
-          color: inherit;
-          padding: 2rem;
-        }
-        button {
-          padding: 10px 10px;
-        }
-      `}</style>
+    <div className="flex flex-col items-center">
+      <div className="w-1/2 my-4 px-4 py-6 bg-cream rounded-lg flex flex-col">
+        <h2>{item.food_name}</h2>
+        <small>By {item.brand_name}</small>
+        <ReactMarkdown children={markdown} />
+      </div>
+      <button
+        className="mx-2 bg-softred text-white px-6 py-4 rounded-md hover:bg-cream hover:text-black focus:outline-none focus:ring-2 "
+        onClick={() => submitData(item)}
+      >
+        Add Meal
+      </button>
     </div>
   );
 };
