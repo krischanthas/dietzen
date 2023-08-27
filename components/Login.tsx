@@ -8,10 +8,8 @@ const Login = () => {
         src="/logo-no-background.png"
         alt="Your Company"
       />
-      <div className="">
-        <div className="flex space-x-4">
-          <Link href="/api/auth/signin">Login</Link>
-        </div>
+      <div className="mt-6 flex space-x-4">
+        <Link href="/api/auth/signin">Login</Link>
       </div>
     </div>
   );

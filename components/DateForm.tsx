@@ -19,8 +19,14 @@ const DateForm = () => {
           name="date"
           value={searchDate}
           onChange={(event) => setSearchDate(event.target.value)}
+          className="px-4 py-2 rounded-md"
         />
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          className="mx-2 bg-cyan text-white px-4 py-2 rounded-md hover:bg-cream hover:text-black focus:outline-none focus:ring-2 focus:ring-red-400"
+        >
+          Search
+        </button>
       </form>
     </div>
   );
