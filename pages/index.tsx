@@ -9,6 +9,7 @@ import prisma from "../lib/prisma";
 import DailySummary from "../components/DailySummary";
 import DailyMealsList from "../components/DailyMealsList";
 import DateForm from "../components/DateForm";
+import Login from "../components/Login";
 
 const startOfDay: Date = new Date();
 startOfDay.setHours(0);
@@ -74,27 +75,22 @@ type HomeProps = {
   uom: string;
 };
 
-
 const Home: React.FC<HomeProps> = (props) => {
-
   const { data: session } = useSession();
 
   if (!session) {
     return (
       <Layout>
-        <h1>Dietzen</h1>
-        <div>You need to be authenticated to view this page.</div>
+        <Login />
       </Layout>
     );
   }
 
-
-
   return (
     <Layout>
-        <DateForm />
-        <DailySummary totals={props.totals}/>
-        <DailyMealsList meals={props.meals}/>
+      <DateForm />
+      <DailySummary totals={props.totals} />
+      <DailyMealsList meals={props.meals} />
     </Layout>
   );
 };

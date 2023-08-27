@@ -4,10 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 
-
-
 const Navbar: React.FC = () => {
-
   const router = useRouter();
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
@@ -28,7 +25,7 @@ const Navbar: React.FC = () => {
 
   if (status === "loading") {
     left = (
-      <div >
+      <div>
         <Link legacyBehavior href="/">
           <a className="bold" data-active={isActive("/")}>
             Feed
@@ -63,28 +60,29 @@ const Navbar: React.FC = () => {
   //  if user is logged in
   if (session) {
     left = (
-      <div className="w-100 py-4 flex justify-center">
+      <div className="w-100 py-4 flex justify-center text-white bg-black">
         <p>Welcome {session.user?.name}</p>
       </div>
     );
 
     right = (
-      <div className="flex flex-row text-center">
+      <div className="w-1/2 my-4 flex flex-col md:flex-row text-center">
         <Link legacyBehavior href="/">
-          <a className="basis-1/4" data-active={isActive("/")}>
+          <a className="basis-1/4 hover:underline" data-active={isActive("/")}>
             Home
           </a>
         </Link>
-        <Link
-          href="/createMeal"
-          className="basis-1/4"       
-         >
+        <Link href="/createMeal" className="basis-1/4 hover:underline">
           New Meal
         </Link>
-        <Link href="/search" className="basis-1/4">
+        <Link href="/search" className="basis-1/4 hover:underline">
           Search Food
         </Link>
-        <Link href="/" className="basis-1/4" onClick={() => signOut()}>
+        <Link
+          href="/"
+          className="basis-1/4 hover:underline"
+          onClick={() => signOut()}
+        >
           Log Out
         </Link>
       </div>
